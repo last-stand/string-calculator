@@ -50,7 +50,7 @@ public class StringCalculatorTest {
     }
     @Test()
     void shouldThrowErrorIfCommaAndNewLineDelimitersAreTogetherInTheString() {
-        RuntimeException thrown = assertThrows(RuntimeException.class, () -> StringCalculator.add("1,\n"), "");
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> StringCalculator.add("1,\n"));
 
         assertTrue(thrown.getMessage().contains("Invalid Input!"));
     }
@@ -60,5 +60,12 @@ public class StringCalculatorTest {
         int result = StringCalculator.add("//;\n1;2");
 
         assertEquals(3, result);
+    }
+
+    @Test()
+    void shouldThrowErrorIfNegativeNumbersArePassed() {
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> StringCalculator.add("1,-2,-3"));
+
+        assertTrue(thrown.getMessage().contains("Negatives not allowed: -2,-3"));
     }
 }

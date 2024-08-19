@@ -1,6 +1,11 @@
 package org.example;
 
+import org.example.exceptions.InvalidInputException;
+import org.example.exceptions.NegativesNotAllowedException;
+
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 public class StringCalculator {
     public static int add(String string) {
@@ -17,7 +22,16 @@ public class StringCalculator {
                 string = stringArray[1];
                 delimiter = String.valueOf(delimiterInput.charAt(2));
             }
-            return Arrays.stream(string.split("[" + delimiter + "]")).mapToInt(Integer::parseInt).sum();
+            List<Integer> integerList = Arrays.stream(string.split("[" + delimiter + "]"))
+                    .mapToInt(Integer::parseInt).boxed().toList();
+            String negativeNumbersString = integerList.stream()
+                    .filter((num) -> num < 0)
+                    .map(String::valueOf)
+                    .collect(Collectors.joining(","));
+            if (!negativeNumbersString.isEmpty()) {
+                throw new NegativesNotAllowedException(negativeNumbersString);
+            }
+            return integerList.stream().mapToInt(Integer::intValue).sum();
         }
         return 0;
     }
