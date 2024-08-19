@@ -39,4 +39,11 @@ public class StringCalculatorTest {
 
         assertEquals(5, result);
     }
+
+    @Test
+    void shouldReturn_6_If_1_2_And_3_ArePassedWithNewLineAndCommaDelimiters() {
+        int result = StringCalculator.add("1\n2,3");
+
+        assertEquals(6, result);
+    }
 }
