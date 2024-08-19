@@ -54,4 +54,11 @@ public class StringCalculatorTest {
 
         assertTrue(thrown.getMessage().contains("Invalid Input!"));
     }
+
+    @Test()
+    void shouldBeAbleToChangeDelimiterToSemicolonToSeparateNumbers() {
+        int result = StringCalculator.add("//;\n1;2");
+
+        assertEquals(3, result);
+    }
 }
