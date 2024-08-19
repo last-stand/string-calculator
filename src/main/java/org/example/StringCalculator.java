@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 public class StringCalculator {
+    private static final int MAX_ALLOWED_INTEGER = 1000;
+
     public static int add(String string) {
         String delimiter = ",\n";
         if (!string.isEmpty()) {
@@ -31,7 +33,7 @@ public class StringCalculator {
             if (!negativeNumbersString.isEmpty()) {
                 throw new NegativesNotAllowedException(negativeNumbersString);
             }
-            return integerList.stream().mapToInt(Integer::intValue).sum();
+            return integerList.stream().mapToInt(Integer::intValue).filter(num -> num <= MAX_ALLOWED_INTEGER).sum();
         }
         return 0;
     }
