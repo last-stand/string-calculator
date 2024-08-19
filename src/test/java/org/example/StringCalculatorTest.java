@@ -25,4 +25,11 @@ public class StringCalculatorTest {
 
         assertEquals(3, result);
     }
+
+    @Test
+    void shouldReturn_30_If_5_10_And_15_ArePassedAsString() {
+        int result = StringCalculator.add("5,10,15");
+
+        assertEquals(30, result);
+    }
 }
