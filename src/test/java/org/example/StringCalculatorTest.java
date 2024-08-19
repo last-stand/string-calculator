@@ -3,6 +3,8 @@ package org.example;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class StringCalculatorTest {
     @Test
@@ -45,5 +47,11 @@ public class StringCalculatorTest {
         int result = StringCalculator.add("1\n2,3");
 
         assertEquals(6, result);
+    }
+    @Test()
+    void shouldThrowErrorIfCommaAndNewLineDelimitersAreTogetherInTheString() {
+        RuntimeException thrown = assertThrows(RuntimeException.class, () -> StringCalculator.add("1,\n"), "");
+
+        assertTrue(thrown.getMessage().contains("Invalid Input!"));
     }
 }
