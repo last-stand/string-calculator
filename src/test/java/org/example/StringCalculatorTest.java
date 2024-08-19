@@ -18,4 +18,11 @@ public class StringCalculatorTest {
 
         assertEquals(1, result);
     }
+
+    @Test
+    void shouldReturn_3_If_1_And_2_ArePassedAsString() {
+        int result = StringCalculator.add("1,2");
+
+        assertEquals(3, result);
+    }
 }
