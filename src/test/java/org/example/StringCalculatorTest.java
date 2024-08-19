@@ -32,4 +32,11 @@ public class StringCalculatorTest {
 
         assertEquals(30, result);
     }
+
+    @Test
+    void shouldReturn_5_If_3_And_2_ArePassedWithNewLineDelimiter() {
+        int result = StringCalculator.add("3\n2");
+
+        assertEquals(5, result);
+    }
 }
