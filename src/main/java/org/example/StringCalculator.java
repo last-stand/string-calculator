@@ -41,6 +41,11 @@ public class StringCalculator {
     }
 
     private static String extractDelimiter(String delimiterInput) {
+        int startIndex = delimiterInput.indexOf("[");
+        int endIndex = delimiterInput.indexOf("]", startIndex);
+        if (startIndex > 1 && endIndex > startIndex) {
+            return delimiterInput.substring(startIndex + 1, endIndex);
+        }
         return String.valueOf(delimiterInput.charAt(2));
     }
 
@@ -56,6 +61,7 @@ public class StringCalculator {
 
     private static List<Integer> parseNumbers(String input, String delimiter) {
         return Arrays.stream(input.split(delimiter))
+                .filter(str -> !str.isEmpty())
                 .map(Integer::parseInt)
                 .collect(Collectors.toList());
     }

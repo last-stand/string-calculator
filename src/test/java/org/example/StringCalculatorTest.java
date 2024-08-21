@@ -75,4 +75,18 @@ public class StringCalculatorTest {
 
         assertEquals(1012, result);
     }
+
+    @Test()
+    void shouldAllowAsteriskAsCustomDelimiterOfLengthThree() {
+        int result = StringCalculator.add("//[***]\n1***2***3");
+
+        assertEquals(6, result);
+    }
+
+    @Test()
+    void shouldAllowHashAsCustomDelimiterOfLengthFive() {
+        int result = StringCalculator.add("//[#####]\n3#####4#####5");
+
+        assertEquals(12, result);
+    }
 }
