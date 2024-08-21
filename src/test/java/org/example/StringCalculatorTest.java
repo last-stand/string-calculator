@@ -89,4 +89,18 @@ public class StringCalculatorTest {
 
         assertEquals(12, result);
     }
+
+    @Test()
+    void shouldAllowMultipleCustomDelimitersLikeAsteriskAndPercentSign() {
+        int result = StringCalculator.add("//[*][%]\n1*2%3");
+
+        assertEquals(6, result);
+    }
+
+    @Test()
+    void shouldAllowMultipleCustomDelimitersLikeHashWithLengthTwoAndDollarWithLengthThree() {
+        int result = StringCalculator.add("//[##][$$$]\n50##30$$$28");
+
+        assertEquals(108, result);
+    }
 }
